@@ -29,8 +29,7 @@ import java.util.Properties;
 @ComponentScan(value = "web")
 public class AppConfig {
 
-    @Autowired
-    private Environment env;
+    private final Environment env;
 
     public AppConfig(Environment env) {
         this.env = env;
