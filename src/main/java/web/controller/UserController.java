@@ -24,11 +24,15 @@ public class UserController {
     }
     @PostMapping()
     public String saveUser(@ModelAttribute("user") User user) {
-        if (user.getId() == null) {
-            userService.createUser(user);
-        } else {
+        userService.createUser(user);
+        return "redirect:/users";
+    }
+    @PostMapping("/edit")
+    public String editUser(@ModelAttribute("user") User user) {
+        if (user.getId() != null) {
             userService.updateUser(user);
         }
+
         return "redirect:/users";
     }
     @GetMapping("/delete")
@@ -45,6 +49,6 @@ public class UserController {
         }
 
         model.addAttribute("user", userService.getUser(id));
-        return "form";
+        return "edit";
     }
 }
